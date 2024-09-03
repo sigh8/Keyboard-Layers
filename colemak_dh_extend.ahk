@@ -1,15 +1,8 @@
-; AutoHotKey v2 script for defining an Extend layer (default is CapsLock)
 ; Hold Extend and press other keys to provide navigation and other functionality
 
-; The script defines F24 as Extend, so you can apply to any key of your choice
-; e.g. to use CapsLock, define:
-;RAlt::F24
+; The script defines F24 as Extend, so you can apply to any key of your choice in Powertoys Keyboard Manager
 
-
-; Ensure CapsLock is off initially
-;SetCapsLockState "Off"
-
-; Define the navigation layer keys
+#SingleInstance Force
 
 ; Set Numrow to F1-F12
 F24 & SC001:: Return
@@ -45,6 +38,8 @@ F24 & SC01A:: {
         SetCapsLockState "On"
 }
 
+F24 & SC01B:: Send '{Blind}{Media_Play_Pause}'
+
 ; middle row
 F24 & SC01E:: Send '{Blind}{LAltDown}'
 F24 & SC01E Up:: Send '{LAltUp}'
@@ -75,12 +70,3 @@ F24 & SC032:: Send '{Blind}{PrintScreen}'
 F24 & SC033:: Send '{Blind}{Backspace}'
 F24 & SC034:: Send '{Blind}{Tab}'
 F24 & SC035:: Send '{AppsKey}'
-
-; RAlt cancel caps / nav layer
-RAlt:: {
-    static navLayer := 0
-    if navLayer
-        navLayer := 0
-    else if GetKeyState('CapsLock', 'T')
-        SetCapsLockState "Off"
-}
